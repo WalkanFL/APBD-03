@@ -2,11 +2,23 @@
 
 public abstract class Item
 {
+    public static int count = 0;
     private string id { get; }
     private string name { get; set; }
     
     private Availability availability { get; set; }
     
     private double rentPrice { get; set; }
+
+    public Item(string name, double rentPrice, Availability availability = Availability.AVAILABLE)
+    {
+        id = "i" + Generator.generateNum(count);
+        
+        this.name = name;
+        this.rentPrice = rentPrice;
+
+        this.availability = availability;
+
+    }
 
 }
