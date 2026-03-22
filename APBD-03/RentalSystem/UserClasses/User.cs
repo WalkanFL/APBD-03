@@ -4,14 +4,16 @@ public abstract class User
 {
     private static int count = 0;
     
-    private string id { get; }
+    private string _id { get; }
+    public string id => _id;
     private string name { get; set; }
     private string surname { get; set; }
-    protected int rentLimit { get; set; }
+    protected int _rentLimit { get; set; }
+    public int rentLimit => _rentLimit;
 
     public User(string name, string surname)
     {
-        id = "u" + Generator.generateNum(count);
+        _id = "u" + Generator.generateNum(count);
         this.name = name;
         this.surname = surname;
     }

@@ -6,7 +6,8 @@ public abstract class Item
     private string id { get; }
     private string name { get; set; }
     
-    private Availability availability { get; set; }
+    private Availability _availability { get; set; }
+    public Availability availability => _availability;
     
     private double rentPrice { get; set; }
 
@@ -17,7 +18,7 @@ public abstract class Item
         this.name = name;
         this.rentPrice = rentPrice;
 
-        this.availability = availability;
+        this._availability = availability;
 
     }
 

@@ -4,6 +4,6 @@ public class Student : User
 {
     public Student(string name, string surname) :  base(name, surname)
     {
-        rentLimit = 2;
+        _rentLimit = 2;
     }
 }
