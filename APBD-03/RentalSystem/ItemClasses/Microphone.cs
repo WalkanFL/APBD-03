@@ -2,8 +2,11 @@
 
 public class Microphone : Item
 {
-    public Microphone(string name, double rentPrice, Availability availability = Availability.AVAILABLE) : base(name, rentPrice, availability)
+    private bool requiresMixer;
+    private bool isAnalog;
+    public Microphone(string name, double rentPrice, bool requiresMixer, bool isAnalog, Availability availability = Availability.AVAILABLE) : base(name, rentPrice, availability)
     {
-        
+        this.requiresMixer = requiresMixer;
+        this.isAnalog = isAnalog;
     }
 }

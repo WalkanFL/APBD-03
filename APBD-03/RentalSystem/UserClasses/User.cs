@@ -7,6 +7,7 @@ public abstract class User
     private string id { get; }
     private string name { get; set; }
     private string surname { get; set; }
+    protected int rentLimit { get; set; }
 
     public User(string name, string surname)
     {

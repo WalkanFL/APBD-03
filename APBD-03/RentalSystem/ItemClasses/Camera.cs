@@ -2,8 +2,11 @@
 
 public class Camera : Item
 {
-    public Camera(string name, double rentPrice, Availability availability = Availability.AVAILABLE) : base(name, rentPrice, availability)
+    private int isoSensitivity;
+    private float shutterSpeed;
+    public Camera(string name, double rentPrice, int isoSensitivity, float shutterSpeed, Availability availability = Availability.AVAILABLE) : base(name, rentPrice, availability)
     {
-        
+        this.isoSensitivity = isoSensitivity;
+        this.shutterSpeed = shutterSpeed;
     }
 }

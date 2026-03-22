@@ -2,8 +2,19 @@
 
 public class Laptop : Item
 {
-    public Laptop(string name, double rentPrice, Availability availability = Availability.AVAILABLE) : base(name, rentPrice, availability)
+    private OperatingSystem operatingSystem;
+    private int gbStorage;
+    
+    public Laptop(string name, double rentPrice, OperatingSystem operatingSystem, int gbStorage, Availability availability = Availability.AVAILABLE) : base(name, rentPrice, availability)
     {
+        this.operatingSystem = operatingSystem;
+        this.gbStorage = gbStorage;
         
     }
+}
+public enum OperatingSystem
+{
+    WINDOWS,
+    LINUX,
+    MAC
 }
