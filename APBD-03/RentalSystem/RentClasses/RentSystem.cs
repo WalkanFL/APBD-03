@@ -7,10 +7,16 @@ public class RentSystem
 {
     private List<RentEntry> _entries { get; set; }
     public List<RentEntry> entries => _entries;
+    private List<User> _users { get; set; }
+    public  List<User> users => _users;
+    private List<Item> _items { get; set; }
+    public List<Item> items => _items;
 
     public RentSystem()
     {
         _entries = new List<RentEntry>();
+        _users = new List<User>();
+        _items = new List<Item>();
     }
 
     public List<RentEntry> getStatusEntries(List<RentEntry> list, Status status = Status.ONGOING)
@@ -44,14 +50,53 @@ public class RentSystem
     public void addNewEntry(User user, Item item)
     {
         List<RentEntry> userEntries = getUsersEntries(entries, user);
-        
-        if (userEntries.Count - getStatusEntries(userEntries, Status.COMPLETED).Count <= user.rentLimit)
+
+        if (users.Contains(user) && items.Contains(item))
         {
-            if (item.availability == Availability.AVAILABLE)
+            if (userEntries.Count - getStatusEntries(userEntries, Status.COMPLETED).Count <= user.rentLimit)
             {
-                RentEntry entry = new RentEntry(user, item, "", "");
-                entries.Add(entry);
+                if (item.availability == Availability.AVAILABLE)
+                {
+                    RentEntry entry = new RentEntry(user, item, "", "");
+                    entries.Add(entry);
+                }
+                else
+                {
+                    Console.WriteLine("Item unavailable");
+                }
             }
+            else
+            {
+                Console.WriteLine("User reached rent limit");
+            }
+        }
+        else
+        {
+            Console.WriteLine("No such user/item in database");
+        }
+    }
+
+    public void addNewUser(User newUser)
+    {
+        if (users.Contains(newUser))
+        {
+            Console.WriteLine("User is already in system");
+        }
+        else
+        {
+            users.Add(newUser);
+        }
+    }
+
+    public void addNewItem(Item newItem)
+    {
+        if (items.Contains(newItem))
+        {
+            Console.WriteLine("Item is already in system");
+        }
+        else
+        {
+            items.Add(newItem);
         }
     }
 }
