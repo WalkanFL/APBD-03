@@ -8,9 +8,7 @@ public class RentSystem
     private List<RentEntry> _entries { get; set; }
     public List<RentEntry> entries => _entries;
     private List<User> _users { get; set; }
-    public  List<User> users => _users;
     private List<Item> _items { get; set; }
-    public List<Item> items => _items;
 
     public RentSystem()
     {
@@ -19,6 +17,23 @@ public class RentSystem
         _items = new List<Item>();
     }
 
+    public List<Item> getItemList()
+    {
+        return _items;
+    }
+
+    public List<Item> getItemList(Availability availability)
+    {
+        List<Item> filteredItems = new List<Item>();
+        foreach (Item item in _items)
+        {
+            if (item.availability == availability)
+            {
+                filteredItems.Add(item);   
+            }
+        }
+        return filteredItems;
+    }
     public List<RentEntry> getStatusEntries(List<RentEntry> list, Status status = Status.ONGOING)
     {
         List<RentEntry> statusEntries = new List<RentEntry>();
@@ -51,7 +66,7 @@ public class RentSystem
     {
         List<RentEntry> userEntries = getUsersEntries(entries, user);
 
-        if (users.Contains(user) && items.Contains(item))
+        if (_users.Contains(user) && _items.Contains(item))
         {
             if (userEntries.Count - getStatusEntries(userEntries, Status.COMPLETED).Count <= user.rentLimit)
             {
@@ -78,25 +93,25 @@ public class RentSystem
 
     public void addNewUser(User newUser)
     {
-        if (users.Contains(newUser))
+        if (_users.Contains(newUser))
         {
             Console.WriteLine("User is already in system");
         }
         else
         {
-            users.Add(newUser);
+            _users.Add(newUser);
         }
     }
 
     public void addNewItem(Item newItem)
     {
-        if (items.Contains(newItem))
+        if (_items.Contains(newItem))
         {
             Console.WriteLine("Item is already in system");
         }
         else
         {
-            items.Add(newItem);
+            _items.Add(newItem);
         }
     }
 }
