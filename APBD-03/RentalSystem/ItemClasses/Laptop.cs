@@ -9,7 +9,7 @@ public class Laptop : Item
     {
         this.operatingSystem = operatingSystem;
         this.gbStorage = gbStorage;
-        
+        _overdueSeverity = 3.5;
     }
 }
 public enum OperatingSystem

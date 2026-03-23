@@ -8,5 +8,6 @@ public class Camera : Item
     {
         this.isoSensitivity = isoSensitivity;
         this.shutterSpeed = shutterSpeed;
+        _overdueSeverity = 2;
     }
 }

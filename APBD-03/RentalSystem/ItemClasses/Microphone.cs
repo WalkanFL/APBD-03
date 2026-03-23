@@ -8,5 +8,6 @@ public class Microphone : Item
     {
         this.requiresMixer = requiresMixer;
         this.isAnalog = isAnalog;
+        _overdueSeverity = 1.5;
     }
 }
