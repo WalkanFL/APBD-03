@@ -2,12 +2,13 @@
 
 public class Camera : Item
 {
-    private int isoSensitivity;
-    private float shutterSpeed;
-    public Camera(string name, double rentPrice, int isoSensitivity, float shutterSpeed, Availability availability = Availability.AVAILABLE) : base(name, rentPrice, availability)
+    private int _isoSensitivity { get; set; }
+    private float _shutterSpeed { get; set; }
+
+    public Camera(string name, double rentPrice, int _isoSensitivity, float _shutterSpeed, Availability availability = Availability.AVAILABLE) : base(name, rentPrice, availability)
     {
-        this.isoSensitivity = isoSensitivity;
-        this.shutterSpeed = shutterSpeed;
+        this._isoSensitivity = _isoSensitivity;
+        this._shutterSpeed = _shutterSpeed;
         _overdueSeverity = 2;
     }
 }

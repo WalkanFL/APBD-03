@@ -2,13 +2,13 @@
 
 public class Laptop : Item
 {
-    private OperatingSystem operatingSystem;
-    private int gbStorage;
-    
-    public Laptop(string name, double rentPrice, OperatingSystem operatingSystem, int gbStorage, Availability availability = Availability.AVAILABLE) : base(name, rentPrice, availability)
+    private OperatingSystem _operatingSystem { get; set; }
+    private int _gbStorage { get; set; }
+
+    public Laptop(string name, double rentPrice, OperatingSystem _operatingSystem, int _gbStorage, Availability availability = Availability.AVAILABLE) : base(name, rentPrice, availability)
     {
-        this.operatingSystem = operatingSystem;
-        this.gbStorage = gbStorage;
+        this._operatingSystem = _operatingSystem;
+        this._gbStorage = _gbStorage;
         _overdueSeverity = 3.5;
     }
 }

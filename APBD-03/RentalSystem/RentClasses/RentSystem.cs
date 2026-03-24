@@ -77,7 +77,7 @@ public class RentSystem
             );
     }
 
-    public void addNewEntry(User user, Item item, String until)
+    public RentEntry addNewEntry(User user, Item item, String until)
     {
         List<RentEntry> userEntries = getUsersEntries(entries, user);
 
@@ -90,6 +90,7 @@ public class RentSystem
                     RentEntry entry = new RentEntry(user, item, DateTime.Now.ToLongDateString(), until);
                     item.setAvailability(Availability.RENTED);
                     entries.Add(entry);
+                    return entry;
                 }
                 else
                 {
@@ -105,6 +106,8 @@ public class RentSystem
         {
             Console.WriteLine("No such user/item in database");
         }
+
+        return null;
     }
 
     public void addNewUser(User newUser)

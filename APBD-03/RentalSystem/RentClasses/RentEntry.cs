@@ -50,6 +50,7 @@ public class RentEntry
     public void forceOverdue()
     {
         _entryStatus = Status.OVERDUE;
+        _wasOverdue = true;
     }
 
     public void completeEntry()

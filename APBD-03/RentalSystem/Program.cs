@@ -27,9 +27,9 @@ rentSystem.addNewItem(cam1);
 //check
 rentSystem.addNewItem(cam1);
 
-rentSystem.addNewEntry(stud2, lap1, DateTime.Now.AddYears(77).ToLongDateString());
+RentEntry stud2sRegEntry = rentSystem.addNewEntry(stud2, lap1, DateTime.Now.AddYears(77).ToLongDateString());
 rentSystem.addNewEntry(stud2, lap2, DateTime.Now.AddMonths(7).ToLongDateString());
-rentSystem.addNewEntry(stud2, micro1, DateTime.Now.ToLongDateString());
+RentEntry stud2sOverEntry = rentSystem.addNewEntry(stud2, micro1, DateTime.Now.ToLongDateString());
 
 void displayItemList(List<Item> items)
 {
@@ -81,11 +81,11 @@ displayRentList(rentSystem.getUsersEntries(rentSystem.entries, stud2));
 Console.WriteLine("Only Overdue Rent Entries");
 displayRentList(rentSystem.getStatusEntries(rentSystem.entries, Status.OVERDUE));
 
-RentEntry stud2sRegEntry = rentSystem.getUsersEntries(rentSystem.getStatusEntries(rentSystem.entries), stud2).First();
 rentSystem.entries.Last().forceOverdue();
-RentEntry stud2sOverEntry = rentSystem.getUsersEntries(rentSystem.getStatusEntries(rentSystem.entries, Status.OVERDUE), stud2).First();
 
 stud2sRegEntry.completeEntry();
+
+stud2sOverEntry.forceOverdue();
 stud2sOverEntry.completeEntry();
 
 Console.WriteLine("Report:");
