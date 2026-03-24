@@ -3,8 +3,10 @@
 public abstract class Item
 {
     public static int count = 0;
-    private string id { get; }
-    private string name { get; set; }
+    private string _id { get; }
+    public string id => _id;
+    private string _name { get; set; }
+    public string name => _name;
     
     private Availability _availability { get; set; }
     public Availability availability => _availability;
@@ -17,15 +19,15 @@ public abstract class Item
 
     public Item(string name, double rentPrice, Availability availability = Availability.AVAILABLE)
     {
-        id = "i" + Generator.generateNum(count);
+        _id = "i" + Generator.generateNum(count++);
         
-        this.name = name;
-        this._rentPrice = rentPrice;
+        _name = name;
+        _rentPrice = rentPrice;
 
-        this._availability = availability;
+        _availability = availability;
 
     }
-    public void changeAvailability(Availability newAvailability)
+    public void setAvailability(Availability newAvailability)
     {
         _availability = newAvailability;
     }

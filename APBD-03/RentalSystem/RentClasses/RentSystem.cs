@@ -62,7 +62,18 @@ public class RentSystem
         return users;
     }
 
-    public void addNewEntry(User user, Item item)
+    public void generateReport()
+    {
+        Console.WriteLine(
+            "Number of ongoing rents : " + getStatusEntries(entries).Count + "\n"
+            + "Number of overdue rents : " + getStatusEntries(entries, Status.OVERDUE).Count + "\n"
+            + "Number of complete rents : " + getStatusEntries(entries, Status.COMPLETED).Count + "\n"
+            + "Number of users : " + _users.Count +"\n"
+            + "Number of items : " + _items.Count + " (Available : "+getItemList(Availability.AVAILABLE)+")" + " (In Repair : "+getItemList(Availability.INREPAIR)+")" + "( Damaged : "+getItemList(Availability.DAMAGED)+")" +"\n"
+            );
+    }
+
+    public void addNewEntry(User user, Item item, String until)
     {
         List<RentEntry> userEntries = getUsersEntries(entries, user);
 
@@ -72,7 +83,8 @@ public class RentSystem
             {
                 if (item.availability == Availability.AVAILABLE)
                 {
-                    RentEntry entry = new RentEntry(user, item, "", "");
+                    RentEntry entry = new RentEntry(user, item, DateTime.Now.ToLongDateString(), until);
+                    item.setAvailability(Availability.RENTED);
                     entries.Add(entry);
                 }
                 else

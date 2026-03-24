@@ -24,12 +24,12 @@ public class RentEntry
 
     public RentEntry(User who, Item what, string when, string until)
     {
-        _id = "r" + Generator.generateNum(count);
+        _id = "r" + Generator.generateNum(count++);
         
-        this._who = who;
-        this._what = what;
-        this._when = when;
-        this._until = until;
+        _who = who;
+        _what = what;
+        _when = when;
+        _until = until;
 
         _entryStatus = Status.ONGOING;
         _wasOverdue = false;
@@ -45,6 +45,11 @@ public class RentEntry
             _entryStatus = Status.OVERDUE;
             _wasOverdue = true;
         }
+    }
+
+    public void forceOverdue()
+    {
+        _entryStatus = Status.OVERDUE;
     }
 
     public void completeEntry()
@@ -66,6 +71,7 @@ public class RentEntry
         }
         who.setBalance(rentCost);
         _entryStatus = Status.COMPLETED;
-        
+        _what.setAvailability(Availability.AVAILABLE);
+
     }
 }
