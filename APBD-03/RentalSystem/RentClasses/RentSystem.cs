@@ -83,7 +83,7 @@ public class RentSystem
 
         if (_users.Contains(user) && _items.Contains(item))
         {
-            if (userEntries.Count - getStatusEntries(userEntries, Status.COMPLETED).Count <= user.rentLimit)
+            if (userEntries.Count - getStatusEntries(userEntries, Status.COMPLETED).Count < user.rentLimit)
             {
                 if (item.availability == Availability.AVAILABLE)
                 {

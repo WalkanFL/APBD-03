@@ -12,24 +12,29 @@ Employee emp1 = new Employee("Pracek", "Jedynek");
 Laptop lap1 = new Laptop("Lenovo",15, OperatingSystem.WINDOWS, 32);
 Laptop lap2 = new Laptop("Maczek", 30, OperatingSystem.MAC, 64, Availability.DAMAGED);
 Microphone micro1 = new Microphone("AT2020", 20, true, true);
+Microphone micro2 = new Microphone("AT4040", 40, true, false);
 Camera cam1 = new Camera("Cannon B16", 5,1200,1/6000, Availability.INREPAIR);
 
 rentSystem.addNewUser(stud1);
 rentSystem.addNewUser(stud2);
 rentSystem.addNewUser(emp1);
-//check
+//check: add the same user
 rentSystem.addNewUser(stud2);
 
 rentSystem.addNewItem(lap1);
 rentSystem.addNewItem(lap2);
 rentSystem.addNewItem(micro1);
+rentSystem.addNewItem(micro2);
 rentSystem.addNewItem(cam1);
-//check
+//check : add the same item
 rentSystem.addNewItem(cam1);
 
 RentEntry stud2sRegEntry = rentSystem.addNewEntry(stud2, lap1, DateTime.Now.AddYears(77).ToLongDateString());
+//check : not an available item
 rentSystem.addNewEntry(stud2, lap2, DateTime.Now.AddMonths(7).ToLongDateString());
 RentEntry stud2sOverEntry = rentSystem.addNewEntry(stud2, micro1, DateTime.Now.ToLongDateString());
+//check : over rent limit 
+rentSystem.addNewEntry(stud2, micro2,DateTime.Now.AddMonths(7).ToLongDateString());
 
 void displayItemList(List<Item> items)
 {
