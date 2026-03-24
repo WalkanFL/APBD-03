@@ -27,34 +27,58 @@ rentSystem.addNewItem(cam1);
 //check
 rentSystem.addNewItem(cam1);
 
-rentSystem.addNewEntry(stud2, lap1);
-rentSystem.addNewEntry(stud2, lap2);
-rentSystem.addNewEntry(stud2, micro1);
+rentSystem.addNewEntry(stud2, lap1, DateTime.Now.AddYears(77).ToLongDateString());
+rentSystem.addNewEntry(stud2, lap2, DateTime.Now.AddMonths(7).ToLongDateString());
+rentSystem.addNewEntry(stud2, micro1, DateTime.Now.ToLongDateString());
 
 void displayItemList(List<Item> items)
 {
-    foreach (Item item in items)
+    if (items.Count == 0)
     {
-        Console.WriteLine(item.id + " " + item.name + " : " + item.availability);
+        Console.WriteLine("No such items");
+    }
+    else
+    {
+        Console.WriteLine("//////////////////////////////////////////////////////////////////////");
+        foreach (Item item in items)
+        {
+            Console.WriteLine(item.id + " : " + item.name + " : " + item.availability);
+        }
+        Console.WriteLine("//////////////////////////////////////////////////////////////////////");
     }
 }
 void displayRentList(List<RentEntry> rentEntries)
 {
-    foreach (RentEntry entry in rentEntries)
+    if (rentEntries.Count == 0)
     {
-        Console.WriteLine(
-            "Who: "+ entry.who.id + " " + entry.who.fullname + "\n" +
-            "What: "+ entry.what.id + " " + entry.what.name  +"\n" +
-            "Status: "+ entry.entryStatus
-            );
+        Console.WriteLine("No such entries");
     }
+    else
+    {
+        Console.WriteLine("//////////////////////////////////////////////////////////////////////");
+        foreach (RentEntry entry in rentEntries)
+        {
+            Console.WriteLine(
+                    "///////\n"+
+                    "Who: "+ entry.who.id + " " + entry.who.fullname + "\n" +
+                    "What: "+ entry.what.id + " " + entry.what.name  +"\n" +
+                    "Status: "+ entry.entryStatus+
+                    "\n///////"
+                    );
+        }
+        Console.WriteLine("//////////////////////////////////////////////////////////////////////");
+    }
+    
 }
-
+Console.WriteLine("All Items");
 displayItemList(rentSystem.getItemList());
+Console.WriteLine("All Available Items");
 displayItemList(rentSystem.getItemList(Availability.AVAILABLE));
-
+Console.WriteLine("All Rent Entries");
 displayRentList(rentSystem.entries);
+Console.WriteLine("Only stud2 Rent Entries");
 displayRentList(rentSystem.getUsersEntries(rentSystem.entries, stud2));
+Console.WriteLine("Only Overdue Rent Entries");
 displayRentList(rentSystem.getStatusEntries(rentSystem.entries, Status.OVERDUE));
 
 RentEntry stud2sRegEntry = rentSystem.getUsersEntries(rentSystem.getStatusEntries(rentSystem.entries), stud2).First();
@@ -64,4 +88,5 @@ RentEntry stud2sOverEntry = rentSystem.getUsersEntries(rentSystem.getStatusEntri
 stud2sRegEntry.completeEntry();
 stud2sOverEntry.completeEntry();
 
+Console.WriteLine("Report:");
 rentSystem.generateReport();

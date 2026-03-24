@@ -64,12 +64,16 @@ public class RentSystem
 
     public void generateReport()
     {
-        Console.WriteLine(
-            "Number of ongoing rents : " + getStatusEntries(entries).Count + "\n"
+        Console.WriteLine("//////////////////////////////////////////////////////////////////////\n"
+            + "Number of ongoing rents : " + getStatusEntries(entries).Count + "\n"
             + "Number of overdue rents : " + getStatusEntries(entries, Status.OVERDUE).Count + "\n"
             + "Number of complete rents : " + getStatusEntries(entries, Status.COMPLETED).Count + "\n"
             + "Number of users : " + _users.Count +"\n"
-            + "Number of items : " + _items.Count + " (Available : "+getItemList(Availability.AVAILABLE)+")" + " (In Repair : "+getItemList(Availability.INREPAIR)+")" + "( Damaged : "+getItemList(Availability.DAMAGED)+")" +"\n"
+            + "Number of items : " + _items.Count +"\n"+
+            " (Available : "+getItemList(Availability.AVAILABLE).Count+")\n" + 
+            " (In Repair : "+getItemList(Availability.INREPAIR).Count+")\n" +
+            " (Damaged : "+getItemList(Availability.DAMAGED).Count+")\n"+
+            "//////////////////////////////////////////////////////////////////////"
             );
     }
 
